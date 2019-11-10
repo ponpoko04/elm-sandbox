@@ -1,0 +1,78 @@
+var _user$project$Main$counterButton = F2(
+	function (message, label) {
+		return A2(
+			_elm_lang$html$Html$button,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(message),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(label),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$Main$update = F2(
+	function (message, model) {
+		var _p0 = message;
+		if (_p0.ctor === 'IncrementBy') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{counter: model.counter + _p0._0});
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{incrementBy: _p0._0});
+		}
+	});
+var _user$project$Main$model = {counter: 0, incrementBy: ''};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {counter: a, incrementBy: b};
+	});
+var _user$project$Main$SetIncrementBy = function (a) {
+	return {ctor: 'SetIncrementBy', _0: a};
+};
+var _user$project$Main$IncrementBy = function (a) {
+	return {ctor: 'IncrementBy', _0: a};
+};
+var _user$project$Main$view = function (model) {
+	var numberInput = A2(
+		_elm_lang$core$Result$withDefault,
+		0,
+		_elm_lang$core$String$toInt(model.incrementBy));
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_user$project$Main$counterButton,
+				_user$project$Main$IncrementBy(numberInput),
+				'Increment By'),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$input,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$type_('number'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$SetIncrementBy),
+							_1: {ctor: '[]'}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(model.counter)),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
+	{model: _user$project$Main$model, update: _user$project$Main$update, view: _user$project$Main$view})();
